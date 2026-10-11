@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TerraTech · Prototipo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- ================= MAPA ================= -->
+<div id="viewport"><div id="stage"></div></div>
+
+<!-- ================= BÚSQUEDA ================= -->
+<div id="topbar">
+  <form class="searchbar" onsubmit="return false" role="search">
+    <span class="brand">TerraTech</span>
+    <label>Busco
+      <select id="fTipo" aria-label="Tipo de propiedad">
+        <option value="">Casa o Terreno</option>
+        <option value="terreno">terreno</option>
+        <option value="casa">casa</option>
+      </select>
+    </label>
+    <label>apto para
+      <select id="fAct" aria-label="Actividad"></select>
+    </label>
+    <label>de tamaño
+      <select id="fTam" aria-label="Tamaño">
+        <option value="">cualquiera</option>
+        <option value="xs">menos de 500 m²</option>
+        <option value="sm">500 a 5.000 m²</option>
+        <option value="md">5.000 m² a 5 ha</option>
+        <option value="lg">más de 5 ha</option>
+      </select>
+    </label>
+  </form>
+  <div class="resultbar" id="results" hidden></div>
+</div>
+
+<div id="legend">
+  <b>Nivel de riesgo</b>
+  <div class="dots">
+    <span><i class="dot" style="background:var(--good)"></i>Bajo</span>
+    <span><i class="dot" style="background:var(--mid)"></i>Medio</span>
+    <span><i class="dot" style="background:var(--bad)"></i>Alto</span>
+  </div>
+  <div style="margin-top:4px">Toca una casa o terreno para ver su ficha.</div>
+</div>
+<div id="aviso">Prototipo con datos ficticios</div>
+
+<!-- banner de selección para comparar -->
+<div id="banner" role="status">
+  <span id="bannerText"></span>
+  <button id="bannerCancel">Cancelar</button>
+</div>
+
+<!-- ================= PANEL FICHA ================= -->
+<aside id="panel" aria-label="Ficha de la propiedad">
+  <button id="panelClose" aria-label="Cerrar ficha">×</button>
+  <div class="scroll" id="panelBody"></div>
+  <div class="actions">
+    <button class="btn ghost" id="btnHist">Ver historial</button>
+    <button class="btn" id="btnCmp">Comparar</button>
+  </div>
+</aside>
+
+<!-- ================= PANTALLA COMPARACIÓN ================= -->
+<section class="screen" id="compare" aria-label="Comparación">
+  <header>
+    <button class="btn ghost" id="cmpBack">← Volver al mapa</button>
+    <h1 id="cmpTitle">Comparación</h1>
+  </header>
+  <div class="body">
+    <div class="cmp" id="cmpGrid"></div>
+    <div class="foot"><button class="btn" id="btnCmpHist">Comparar historiales</button></div>
+  </div>
+</section>
+
+<!-- ================= PANTALLA HISTORIAL ================= -->
+<section class="screen" id="history" aria-label="Historial de desastres">
+  <header>
+    <button class="btn ghost" id="histBack">← Volver</button>
+    <h1 id="histTitle">Historial de desastres</h1>
+  </header>
+  <div class="body"><div class="hist" id="histBody"></div></div>
+</section>
+
+
+<!-- data.js debe cargarse ANTES que app.js -->
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
